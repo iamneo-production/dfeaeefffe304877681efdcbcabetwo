@@ -2,7 +2,7 @@
 let cells = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let result = document.querySelector(".result");
-let buttons = document.querySelectorAll(".btn");
+let btns = document.querySelectorAll(".btn");
 let gameOver = false;
 
 // Winning combinations
@@ -18,12 +18,11 @@ const winningCombinations = [
 ];
 
 // Function to handle player moves
-function makeMove(button) {
-  const index = aRRAY.FROM(btns).indexof(button);
+function makeMove(index) {
   if (cells[index] === "" && !gameOver) {
     // Update the game state with the current player's move
     cells[index] = currentPlayer;
-    button.textContent = currentPlayer;
+    btns[index].value = currentPlayer;
 
     // Check for winning conditions
     for (const [a, b, c] of winningCombinations) {
@@ -56,22 +55,19 @@ function resetGame() {
   cells = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";
   result.textContent = "Player X's turn";
-  btns.forEach((button) => {
-    button.addEventListener("click", ()=>makeMove(button));
-    button.textContent = "";
+  btns.forEach((button, index) => {
+    button.value = ""; // Clear the button value
     gameOver = false;
   });
 }
 
-
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
   // Add click event listeners to the buttons
-  buttons.forEach((button) => {
-    button.addEventListener("click",()=>makeMove(button));
+  btns.forEach((button, index) => {
+    button.addEventListener("click", () => makeMove(index));
   });
 
-  // Explicitly add the click event listener to the reset button
-  const resetButton = document.querySelector("#reset");
-  resetButton.addEventListener("click", resetGame);
+  // Add click event listener to the reset button
+  document.querySelector("#reset").addEventListener("click", resetGame);
 });
