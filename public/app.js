@@ -19,9 +19,11 @@ const winningCombinations = [
 
 // Function to handle player moves
 function ticTacToe(element, index) {
-  if(button.textContent ===""&& !gameover){
+  const index = aRRAY.FROM(btns).indexof(button);
+  if (cells[index] === "" && !gameOver) {
+    // Update the game state with the current player's move
+    cells[index] = currentPlayer;
     button.textContent = currentPlayer;
-  }
 
     // Check for winning conditions
     for (const [a, b, c] of winningCombinations) {
@@ -47,7 +49,7 @@ function ticTacToe(element, index) {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     result.textContent = `Player ${currentPlayer}'s turn`;
   }
-
+}
 
 // Function to reset the game
 function resetGame() {
@@ -70,7 +72,7 @@ function handleButtonClick(event) {
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
   // Add click event listeners to the buttons
-  btns.forEach((btn) => {
+  btns.forEach((button) => {
     btn.addEventListener("click", handleButtonClick);
   });
 
