@@ -19,10 +19,9 @@ const winningCombinations = [
 
 // Function to handle player moves
 function ticTacToe(element, index) {
-  if (cells[index] === "" && !gameOver) {
-    // Update the game state with the current player's move
-    cells[index] = currentPlayer;
-    element.textContent = currentPlayer;
+  if(button.textContent ===""&& !gameover){
+    button.textContent = currentPlayer;
+  }
 
     // Check for winning conditions
     for (const [a, b, c] of winningCombinations) {
@@ -48,7 +47,7 @@ function ticTacToe(element, index) {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     result.textContent = `Player ${currentPlayer}'s turn`;
   }
-}
+
 
 // Function to reset the game
 function resetGame() {
