@@ -2,7 +2,7 @@
 let cells = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let result = document.querySelector(".result");
-let btns = document.querySelectorAll(".btn");
+let buttons = document.querySelectorAll(".btn");
 let gameOver = false;
 
 // Winning combinations
@@ -18,7 +18,7 @@ const winningCombinations = [
 ];
 
 // Function to handle player moves
-function ticTacToe(element, index) {
+function makeMove(button) {
   const index = aRRAY.FROM(btns).indexof(button);
   if (cells[index] === "" && !gameOver) {
     // Update the game state with the current player's move
@@ -56,24 +56,19 @@ function resetGame() {
   cells = ["", "", "", "", "", "", "", "", ""];
   currentPlayer = "X";
   result.textContent = "Player X's turn";
-  btns.forEach((btn) => {
-    btn.addEventListener("click", handleButtonClick);
-    btn.textContent = "";
+  btns.forEach((button) => {
+    button.addEventListener("click", ()=>makeMove(button));
+    button.textContent = "";
     gameOver = false;
   });
 }
 
-// Function to handle button click
-function handleButtonClick(event) {
-  const index = Array.from(btns).indexOf(event.target);
-  ticTacToe(event.target, index);
-}
 
 // Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", () => {
   // Add click event listeners to the buttons
-  btns.forEach((button) => {
-    btn.addEventListener("click", handleButtonClick);
+  buttons.forEach((button) => {
+    button.addEventListener("click",()=>makeMove(button));
   });
 
   // Explicitly add the click event listener to the reset button
